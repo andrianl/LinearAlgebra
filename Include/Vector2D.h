@@ -13,41 +13,40 @@ template <typename T>
 concept FloatingPoint = std::is_floating_point_v<T>;
 
 /**
- * @brief 3D Vector class template.
+ * @brief 2D Vector class template.
  *
  * @tparam T The floating-point type to use for vector components.
  */
 template <FloatingPoint T>
-class FVector3D
+class FVector2D
 {
 public:
     /**
      * @brief Default constructor. Initializes all components to zero.
      */
-    FVector3D() = default;
+    FVector2D() = default;
 
     /**
      * @brief Constructor that initializes vector components with given values.
      *
      * @param InX The X component value.
      * @param InY The Y component value.
-     * @param InZ The Z component value.
      */
-    FVector3D(const T& InX, const T& InY, const T& InZ) : X(InX), Y(InY), Z(InZ) {}
+    FVector2D(const T& InX, const T& InY) : X(InX), Y(InY) {}
 
     /**
      * @brief Copy constructor.
      *
      * @param Other The vector to copy.
      */
-    FVector3D(const FVector3D& Other) = default;
+    FVector2D(const FVector2D& Other) = default;
 
     /**
      * @brief Move constructor.
      *
      * @param Other The vector to move.
      */
-    FVector3D(FVector3D&& Other) noexcept = default;
+    FVector2D(FVector2D&& Other) noexcept = default;
 
     /**
      * @brief Equality operator.
@@ -55,7 +54,7 @@ public:
      * @param other The vector to compare.
      * @return true if the vectors are equal, false otherwise.
      */
-    bool operator==(const FVector3D& other) const = default;
+    bool operator==(const FVector2D& other) const = default;
 
     /**
      * @brief Access individual components of the vector by index.
@@ -88,13 +87,6 @@ public:
     T GetY() const { return Y; }
 
     /**
-     * @brief Get the Z component value.
-     *
-     * @return The Z component value.
-     */
-    T GetZ() const { return Z; }
-
-    /**
      * @brief Set the X component value.
      *
      * @param InX The new X component value.
@@ -109,25 +101,18 @@ public:
     void SetY(const T& InY) { Y = InY; }
 
     /**
-     * @brief Set the Z component value.
-     *
-     * @param InZ The new Z component value.
-     */
-    void SetZ(const T& InZ) { Z = InZ; }
-
-    /**
      * @brief Calculate the magnitude (length) of the vector.
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return Sqrt(X * X + Y * Y + Z * Z); }
+    T Magnitude() const { return Sqrt(X * X + Y * Y); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.
      *
      * @return Reference to the normalized vector.
      */
-    FVector3D& Normalize()
+    FVector2D& Normalize()
     {
         const T magnitude = Magnitude();
         *this /= magnitude;
@@ -140,7 +125,7 @@ public:
     * @param Other The other vector.
     * @return The distance between this vector and the other vector.
     */
-    T DistanceTo(const FVector3D& Other) const
+    T DistanceTo(const FVector2D& Other) const
     {
         return Magnitude(*this - Other);
     }
@@ -151,11 +136,10 @@ public:
      * @param Other The vector to add.
      * @return Reference to the modified vector.
      */
-    FVector3D& operator+=(const FVector3D& Other)
+    FVector2D& operator+=(const FVector2D& Other)
     {
         X += Other.X;
         Y += Other.Y;
-        Z += Other.Z;
         return *this;
     }
 
@@ -165,11 +149,10 @@ public:
      * @param Other The vector to subtract.
      * @return Reference to the modified vector.
      */
-    FVector3D& operator-=(const FVector3D& Other)
+    FVector2D& operator-=(const FVector2D& Other)
     {
         X -= Other.X;
         Y -= Other.Y;
-        Z -= Other.Z;
         return *this;
     }
 
@@ -179,11 +162,10 @@ public:
      * @param Scalar The scalar value to multiply by.
      * @return Reference to the modified vector.
      */
-    FVector3D& operator*=(const T& Scalar)
+    FVector2D& operator*=(const T& Scalar)
     {
         X *= Scalar;
         Y *= Scalar;
-        Z *= Scalar;
         return *this;
     }
 
@@ -193,17 +175,16 @@ public:
      * @param Scalar The scalar value to divide by.
      * @return Reference to the modified vector.
      */
-    FVector3D& operator/=(const T& Scalar)
+    FVector2D& operator/=(const T& Scalar)
     {
         const T Delimeter = static_cast<T>(1) / Scalar;
         X *= Delimeter;
         Y *= Delimeter;
-        Z *= Delimeter;
         return *this;
     }
 
 private:
-    T X, Y, Z; // Components of the vector
+    T X, Y; // Components of the vector
 };
 
 /**
@@ -214,9 +195,9 @@ private:
  * @return The result of the multiplication.
  */
 template <FloatingPoint T>
-inline FVector3D<T> operator*(const FVector3D<T>& LHS, const T& Scalar)
+inline FVector2D<T> operator*(const FVector2D<T>& LHS, const T& Scalar)
 {
-    return { LHS.GetX() * Scalar, LHS.GetY() * Scalar, LHS.GetZ() * Scalar };
+    return { LHS.GetX() * Scalar, LHS.GetY() * Scalar };
 }
 
 /**
@@ -227,10 +208,10 @@ inline FVector3D<T> operator*(const FVector3D<T>& LHS, const T& Scalar)
  * @return The result of the division.
  */
 template <FloatingPoint T>
-inline FVector3D<T> operator/(const FVector3D<T>& LHS, const T& Scalar)
+inline FVector2D<T> operator/(const FVector2D<T>& LHS, const T& Scalar)
 {
     const T Delimeter = static_cast<T>(1) / Scalar;
-    return { LHS.GetX() * Delimeter, LHS.GetY() * Delimeter, LHS.GetZ() * Delimeter };
+    return { LHS.GetX() * Delimeter, LHS.GetY() * Delimeter };
 }
 
 /**
@@ -241,9 +222,9 @@ inline FVector3D<T> operator/(const FVector3D<T>& LHS, const T& Scalar)
  * @return The result of the addition.
  */
 template <FloatingPoint T>
-inline FVector3D<T> operator+(const FVector3D<T>& A, const FVector3D<T>& B)
+inline FVector2D<T> operator+(const FVector2D<T>& A, const FVector2D<T>& B)
 {
-    return { A.GetX() + B.GetX(), A.GetY() + B.GetY(), A.GetZ() + B.GetZ() };
+    return { A.GetX() + B.GetX(), A.GetY() + B.GetY() };
 }
 
 /**
@@ -254,9 +235,9 @@ inline FVector3D<T> operator+(const FVector3D<T>& A, const FVector3D<T>& B)
  * @return The result of the subtraction.
  */
 template <FloatingPoint T>
-inline FVector3D<T> operator-(const FVector3D<T>& A, const FVector3D<T>& B)
+inline FVector2D<T> operator-(const FVector2D<T>& A, const FVector2D<T>& B)
 {
-    return { A.GetX() - B.GetX(), A.GetY() - B.GetY(), A.GetZ() - B.GetZ() };
+    return { A.GetX() - B.GetX(), A.GetY() - B.GetY() };
 }
 
 /**
@@ -266,9 +247,9 @@ inline FVector3D<T> operator-(const FVector3D<T>& A, const FVector3D<T>& B)
  * @return The negated vector.
  */
 template <FloatingPoint T>
-inline FVector3D<T> operator-(const FVector3D<T>& Vector)
+inline FVector2D<T> operator-(const FVector2D<T>& Vector)
 {
-    return { -Vector.GetX(), -Vector.GetY(), -Vector.GetZ() };
+    return { -Vector.GetX(), -Vector.GetY() };
 }
 
 /**
@@ -278,7 +259,7 @@ inline FVector3D<T> operator-(const FVector3D<T>& Vector)
  * @return The magnitude of the vector.
  */
 template <FloatingPoint T>
-inline T Magnitude(const FVector3D<T>& Vector)
+inline T Magnitude(const FVector2D<T>& Vector)
 {
     return Vector.Magnitude();
 }
@@ -290,10 +271,10 @@ inline T Magnitude(const FVector3D<T>& Vector)
  * @return The normalized vector.
  */
 template <FloatingPoint T>
-inline FVector3D<T> GetNormalized(const FVector3D<T>& Vector)
+inline FVector2D<T> GetNormalized(const FVector2D<T>& Vector)
 {
     const T magnitude = Magnitude(Vector);
-    FVector3D<T> NormalizedVector = Vector / magnitude;
+    FVector2D<T> NormalizedVector = Vector / magnitude;
 
     return NormalizedVector;
 }
@@ -306,26 +287,9 @@ inline FVector3D<T> GetNormalized(const FVector3D<T>& Vector)
  * @return The dot product of the two vectors.
  */
 template <FloatingPoint T>
-inline T Dot(const FVector3D<T>& A, const FVector3D<T>& B)
+inline T Dot(const FVector2D<T>& A, const FVector2D<T>& B)
 {
-    return A.GetX() * B.GetX() + A.GetY() * B.GetY() + A.GetZ() * B.GetZ();
-}
-
-/**
- * @brief Calculate the cross product of two vectors.
- *
- * @param A The first vector.
- * @param B The second vector.
- * @return The cross product of the two vectors.
- */
-template <FloatingPoint T>
-inline FVector3D<T> Cross(const FVector3D<T>& A, const FVector3D<T>& B)
-{
-    return {
-        A.GetY() * B.GetZ() - A.GetZ() * B.GetY(),
-        A.GetZ() * B.GetX() - A.GetX() * B.GetZ(),
-        A.GetX() * B.GetY() - A.GetY() * B.GetX()
-    };
+    return A.GetX() * B.GetX() + A.GetY() * B.GetY();
 }
 
 /**
@@ -336,7 +300,7 @@ inline FVector3D<T> Cross(const FVector3D<T>& A, const FVector3D<T>& B)
  * @return The distance between the two vectors.
  */
 template <FloatingPoint T>
-inline T Distance(const FVector3D<T>& A, const FVector3D<T>& B)
+inline T Distance(const FVector2D<T>& A, const FVector2D<T>& B)
 {
     return Magnitude(A - B);
 }
@@ -349,48 +313,14 @@ inline T Distance(const FVector3D<T>& A, const FVector3D<T>& B)
  * @return The squared distance between the two vectors.
  */
 template <FloatingPoint T>
-inline T DistanceSquared(const FVector3D<T>& A, const FVector3D<T>& B)
+inline T DistanceSquared(const FVector2D<T>& A, const FVector2D<T>& B)
 {
-    const FVector3D<T> Difference = A - B;
+    const FVector2D<T> Difference = A - B;
     return Dot(Difference, Difference);
 }
 
-/**
- * @brief Projects vector A onto vector B.
- *
- * This function projects vector A onto vector B by computing the scalar projection of A onto B
- * and multiplying it with the normalized vector B.
- *
- * @tparam T The type of the floating-point values in the vectors.
- * @param A The vector to be projected.
- * @param B The vector onto which A will be projected.
- * @return The projected vector.
- */
-template <FloatingPoint T>
-inline FVector3D<T> Project(const FVector3D<T>& A, const FVector3D<T>& B)
-{
-    return {B * (Dot(A, B) / Dot(B, B))};
-}
-
-/**
- * @brief Rejects vector A from vector B.
- *
- * This function computes the rejection of vector A from vector B by subtracting the projection
- * of A onto B from A.
- *
- * @tparam T The type of the floating-point values in the vectors.
- * @param A The vector to be rejected.
- * @param B The vector from which A will be rejected.
- * @return The rejected vector.
- */
-template <FloatingPoint T>
-inline FVector3D<T> Reject(const FVector3D<T>& A, const FVector3D<T>& B)
-{
-    return { A - B * (Dot(A, B) / Dot(B, B)) };
-}
-
 #ifdef DOUBLE_PRECISION
-using Vector3D = FVector3D<double>;
+using Vector2D = FVector2D<double>;
 #elif
-using Vector3D = FVector3D<float>;
+using Vector2D = FVector2D<float>;
 #endif

@@ -133,6 +133,8 @@ namespace Ratchet
 #endif
 }
 
+#define DOUBLE_PRECISION 1
+
 #ifdef DOUBLE_PRECISION
 	typedef double Real;
 #else

@@ -15,8 +15,7 @@ namespace Ratchet
  */
 //template <typename T>
 //concept FloatingPoint = std::is_floating_point_v<T>;
-template <typename T>
-concept FloatingPoint = std::is_floating_point_v<T>;
+
 
 /**
  * @brief 3D Vector class template.
@@ -126,7 +125,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return Sqrt(X * X + Y * Y + Z * Z); }
+    T Magnitude() const { return Sqrt<T>(X * X + Y * Y + Z * Z); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.
@@ -489,7 +488,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return Sqrt(X * X + Y * Y); }
+    T Magnitude() const { return Sqrt<T>(X * X + Y * Y); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.
@@ -827,7 +826,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return Sqrt(X * X + Y * Y + Z * Z + W * W); }
+    T Magnitude() const { return Sqrt<T>(X * X + Y * Y + Z * Z + W * W); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.

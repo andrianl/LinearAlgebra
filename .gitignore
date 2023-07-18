@@ -542,3 +542,6 @@ $RECYCLE.BIN/
 #Ninja template
 .ninja_deps
 .ninja_log
+/Math.sln
+/Math.vcxproj
+/Math.vcxproj.filters

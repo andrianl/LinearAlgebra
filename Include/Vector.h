@@ -2,6 +2,9 @@
 
 #include <concepts>
 #include "Platform.h"
+#include "REMath.h"
+
+using Ratchet::Math::Sqrt;
 
 namespace Ratchet
 { 
@@ -123,7 +126,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return /*Sqrt*/(X * X + Y * Y + Z * Z); }
+    T Magnitude() const { return Sqrt(X * X + Y * Y + Z * Z); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.
@@ -486,7 +489,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return /*Sqrt*/(X * X + Y * Y); }
+    T Magnitude() const { return Sqrt(X * X + Y * Y); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.
@@ -824,7 +827,7 @@ public:
      *
      * @return The magnitude of the vector.
      */
-    T Magnitude() const { return /*Sqrt*/(X * X + Y * Y + Z * Z + W * W); }
+    T Magnitude() const { return Sqrt(X * X + Y * Y + Z * Z + W * W); }
 
     /**
      * @brief Normalize the vector to have a magnitude of 1.

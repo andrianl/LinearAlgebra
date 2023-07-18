@@ -138,4 +138,3 @@ namespace Ratchet
 #else
 	typedef float Real;
 #endif // DOUBLE_PRECISION
-

@@ -13,5 +13,6 @@ int main()
 	//std::cout << "Double precision " << sizeof(Vector3D) * 8 << std::endl;
 
 	auto X = Distance(LocationX, LocationY);
+
 	return 0;
 }

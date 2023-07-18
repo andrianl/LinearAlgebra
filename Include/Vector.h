@@ -3,11 +3,15 @@
 #include <concepts>
 #include "Platform.h"
 
+namespace Ratchet
+{ 
 /**
  * @brief Concept to check if a type is a floating-point type.
  *
  * @tparam T The type to check.
  */
+//template <typename T>
+//concept FloatingPoint = std::is_floating_point_v<T>;
 template <typename T>
 concept FloatingPoint = std::is_floating_point_v<T>;
 
@@ -388,12 +392,6 @@ inline FVector3D<T> Reject(const FVector3D<T>& A, const FVector3D<T>& B)
     return { A - B * (Dot(A, B) / Dot(B, B)) };
 }
 
-#ifdef DOUBLE_PRECISION
-using Vector3D = FVector3D<double>;
-#else
-using Vector3D = FVector3D<float>;
-#endif
-
 
 /**
  * @brief 2D Vector class template.
@@ -702,11 +700,6 @@ inline T DistanceSquared(const FVector2D<T>& A, const FVector2D<T>& B)
     return Dot(Difference, Difference);
 }
 
-#ifdef DOUBLE_PRECISION
-using Vector2D = FVector2D<double>;
-#else
-using Vector2D = FVector2D<float>;
-#endif
 
 /**
  * @brief 4D Vector class template.
@@ -1053,8 +1046,28 @@ inline T DistanceSquared(const FVector4D<T>& A, const FVector4D<T>& B)
     return Dot(Difference, Difference);
 }
 
+
+#ifdef DOUBLE_PRECISION
+using Vector3D = FVector3D<double>;
+#else
+using Vector3D = FVector3D<float>;
+#endif
+
+#ifdef DOUBLE_PRECISION
+using Vector2D = FVector2D<double>;
+#else
+using Vector2D = FVector2D<float>;
+#endif
+
 #ifdef DOUBLE_PRECISION
 using Vector4D = FVector4D<double>;
 #else
 using Vector4D = FVector4D<float>;
 #endif
+
+
+}
+
+using Ratchet::Vector2D;
+using Ratchet::Vector3D;
+using Ratchet::Vector4D;

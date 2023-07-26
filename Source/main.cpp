@@ -2,17 +2,12 @@
 
 int main()
 {
-	Vector2D Location2{};
-	Vector3D Location3{};
-	Vector4D Location4{};
-
-
-	Vector3D LocationX{ 4, 8, 12 };
-	Vector3D LocationY{ 5 , 8 , 19 };
-
-	//std::cout << "Double precision " << sizeof(Vector3D) * 8 << std::endl;
+	Vector3D LocationX{ 3,4,5 }, LocationY{ 5,6,7 };
 
 	auto X = Distance(LocationX, LocationY);
+
+	auto Y = Cross(LocationX, LocationY);
+	auto Z = Dot(LocationX, LocationY);
 
 	return 0;
 }

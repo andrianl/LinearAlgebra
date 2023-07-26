@@ -6,35 +6,35 @@
 
 namespace Ratchet
 {
+
     /**
-     * @brief 3D Vector class template.
+     * @brief 2D Vector class template.
      *
      * @tparam T The floating-point type to use for vector components.
      */
     template <FloatingPoint T>
-    class FVector3D
+    class FVector2D
     {
     public:
         /**
          * @brief Default constructor. Initializes all components to zero.
          */
-        FVector3D();
+        FVector2D();
 
         /**
          * @brief Constructor that initializes vector components with given values.
          *
          * @param InX The X component value.
          * @param InY The Y component value.
-         * @param InZ The Z component value.
          */
-        FVector3D(const T InX, const T InY, const T InZ);
+        FVector2D(const T InX, const T InY);
 
         /**
          * @brief Copy constructor.
          *
          * @param Other The vector to copy.
          */
-        FVector3D(const FVector3D &Other);
+        FVector2D(const FVector2D &Other);
 
         /**
          * @brief Equality operator.
@@ -42,7 +42,7 @@ namespace Ratchet
          * @param other The vector to compare.
          * @return true if the vectors are equal, false otherwise.
          */
-        bool operator==(const FVector3D &other) const;
+        bool operator==(const FVector2D &other) const;
 
         /**
          * @brief Access individual components of the vector by index.
@@ -75,13 +75,6 @@ namespace Ratchet
         T GetY() const;
 
         /**
-         * @brief Get the Z component value.
-         *
-         * @return The Z component value.
-         */
-        T GetZ() const;
-
-        /**
          * @brief Set the X component value.
          *
          * @param InX The new X component value.
@@ -94,12 +87,6 @@ namespace Ratchet
          * @param InY The new Y component value.
          */
         void SetY(const T InY);
-        /**
-         * @brief Set the Z component value.
-         *
-         * @param InZ The new Z component value.
-         */
-        void SetZ(const T InZ);
 
         /**
          * @brief Calculate the magnitude (length) of the vector.
@@ -113,7 +100,7 @@ namespace Ratchet
          *
          * @return Reference to the normalized vector.
          */
-        FVector3D &Normalize();
+        FVector2D &Normalize();
 
         /**
          * @brief Calculate the distance between this vector and another vector.
@@ -121,7 +108,7 @@ namespace Ratchet
          * @param Other The other vector.
          * @return The distance between this vector and the other vector.
          */
-        T DistanceTo(const FVector3D &Other) const;
+        T DistanceTo(const FVector2D &Other) const;
 
         /**
          * @brief Compound assignment operator for vector addition.
@@ -129,7 +116,7 @@ namespace Ratchet
          * @param Other The vector to add.
          * @return Reference to the modified vector.
          */
-        FVector3D &operator+=(const FVector3D &Other);
+        FVector2D &operator+=(const FVector2D &Other);
 
         /**
          * @brief Compound assignment operator for vector subtraction.
@@ -137,7 +124,7 @@ namespace Ratchet
          * @param Other The vector to subtract.
          * @return Reference to the modified vector.
          */
-        FVector3D &operator-=(const FVector3D &Other);
+        FVector2D &operator-=(const FVector2D &Other);
 
         /**
          * @brief Compound assignment operator for scalar multiplication.
@@ -145,7 +132,7 @@ namespace Ratchet
          * @param Scalar The scalar value to multiply by.
          * @return Reference to the modified vector.
          */
-        FVector3D &operator*=(const T Scalar);
+        FVector2D &operator*=(const T Scalar);
 
         /**
          * @brief Compound assignment operator for scalar division.
@@ -153,11 +140,12 @@ namespace Ratchet
          * @param Scalar The scalar value to divide by.
          * @return Reference to the modified vector.
          */
-        FVector3D &operator/=(const T Scalar);
+        FVector2D &operator/=(const T Scalar);
 
     private:
-        T X, Y, Z; // Components of the vector
+        T X, Y; // Components of the vector
     };
+
     /**
      * @brief Binary operator for vector-scalar multiplication.
      *
@@ -166,7 +154,7 @@ namespace Ratchet
      * @return The result of the multiplication.
      */
     template <FloatingPoint T>
-    FVector3D<T> operator*(const FVector3D<T> &LHS, const T Scalar);
+    FVector2D<T> operator*(const FVector2D<T> &LHS, const T Scalar);
 
     /**
      * @brief Binary operator for vector-scalar division.
@@ -176,7 +164,7 @@ namespace Ratchet
      * @return The result of the division.
      */
     template <FloatingPoint T>
-    FVector3D<T> operator/(const FVector3D<T> &LHS, const T Scalar);
+    FVector2D<T> operator/(const FVector2D<T> &LHS, const T Scalar);
 
     /**
      * @brief Binary operator for vector addition.
@@ -186,7 +174,7 @@ namespace Ratchet
      * @return The result of the addition.
      */
     template <FloatingPoint T>
-    FVector3D<T> operator+(const FVector3D<T> &A, const FVector3D<T> &B);
+    FVector2D<T> operator+(const FVector2D<T> &A, const FVector2D<T> &B);
 
     /**
      * @brief Binary operator for vector subtraction.
@@ -196,7 +184,7 @@ namespace Ratchet
      * @return The result of the subtraction.
      */
     template <FloatingPoint T>
-    FVector3D<T> operator-(const FVector3D<T> &A, const FVector3D<T> &B);
+    FVector2D<T> operator-(const FVector2D<T> &A, const FVector2D<T> &B);
 
     /**
      * @brief Unary negation operator for a vector.
@@ -205,7 +193,7 @@ namespace Ratchet
      * @return The negated vector.
      */
     template <FloatingPoint T>
-    FVector3D<T> operator-(const FVector3D<T> &Vector);
+    FVector2D<T> operator-(const FVector2D<T> &Vector);
 
     /**
      * @brief Calculate the magnitude (length) of a vector.
@@ -214,7 +202,7 @@ namespace Ratchet
      * @return The magnitude of the vector.
      */
     template <FloatingPoint T>
-    T Magnitude(const FVector3D<T> &Vector);
+    T Magnitude(const FVector2D<T> &Vector);
 
     /**
      * @brief Get a normalized (unit) vector from a given vector.
@@ -223,7 +211,7 @@ namespace Ratchet
      * @return The normalized vector.
      */
     template <FloatingPoint T>
-    FVector3D<T> GetNormalized(const FVector3D<T> &Vector);
+    FVector2D<T> GetNormalized(const FVector2D<T> &Vector);
 
     /**
      * @brief Calculate the dot product of two vectors.
@@ -233,17 +221,7 @@ namespace Ratchet
      * @return The dot product of the two vectors.
      */
     template <FloatingPoint T>
-    T Dot(const FVector3D<T> &A, const FVector3D<T> &B);
-
-    /**
-     * @brief Calculate the cross product of two vectors.
-     *
-     * @param A The first vector.
-     * @param B The second vector.
-     * @return The cross product of the two vectors.
-     */
-    template <FloatingPoint T>
-    FVector3D<T> Cross(const FVector3D<T> &A, const FVector3D<T> &B);
+    T Dot(const FVector2D<T> &A, const FVector2D<T> &B);
 
     /**
      * @brief Calculate the distance between two vectors.
@@ -253,7 +231,7 @@ namespace Ratchet
      * @return The distance between the two vectors.
      */
     template <FloatingPoint T>
-    inline T Distance(const FVector3D<T> &A, const FVector3D<T> &B);
+    T Distance(const FVector2D<T> &A, const FVector2D<T> &B);
 
     /**
      * @brief Calculate the squared distance between two vectors.
@@ -263,33 +241,6 @@ namespace Ratchet
      * @return The squared distance between the two vectors.
      */
     template <FloatingPoint T>
-    T DistanceSquared(const FVector3D<T> &A, const FVector3D<T> &B);
+    T DistanceSquared(const FVector2D<T> &A, const FVector2D<T> &B);
 
-    /**
-     * @brief Projects vector A onto vector B.
-     *
-     * This function projects vector A onto vector B by computing the scalar projection of A onto B
-     * and multiplying it with the normalized vector B.
-     *
-     * @tparam T The type of the floating-point values in the vectors.
-     * @param A The vector to be projected.
-     * @param B The vector onto which A will be projected.
-     * @return The projected vector.
-     */
-    template <FloatingPoint T>
-    FVector3D<T> Project(const FVector3D<T> &A, const FVector3D<T> &B);
-
-    /**
-     * @brief Rejects vector A from vector B.
-     *
-     * This function computes the rejection of vector A from vector B by subtracting the projection
-     * of A onto B from A.
-     *
-     * @tparam T The type of the floating-point values in the vectors.
-     * @param A The vector to be rejected.
-     * @param B The vector from which A will be rejected.
-     * @return The rejected vector.
-     */
-    template <FloatingPoint T>
-    FVector3D<T> Reject(const FVector3D<T> &A, const FVector3D<T> &B);
 }

@@ -1,22 +1,24 @@
 #pragma once
 
 #include "Vector3D.h"
-
-
+#include "Vector2D.h"
 
 namespace Ratchet
 {
 #ifdef DOUBLE_PRECISION
 	using Vector3D = FVector3D<double>;
+	using Vector2D = FVector2D<double>;
 #else
 	using Vector3D = FVector3D<float>;
+	using Vector2D = FVector2D<float>;
 #endif
 
 }
+
+using Ratchet::Vector2D;
 using Ratchet::Vector3D;
 
-
-//namespace Ratchet
+// namespace Ratchet
 //{
 //
 ///**
@@ -24,10 +26,10 @@ using Ratchet::Vector3D;
 // *
 // * @tparam T The floating-point type to use for vector components.
 // */
-//template <FloatingPoint T>
-//class FVector2D
+// template <FloatingPoint T>
+// class FVector2D
 //{
-//public:
+// public:
 //    /**
 //     * @brief Default constructor. Initializes all components to zero.
 //     */
@@ -190,7 +192,7 @@ using Ratchet::Vector3D;
 //        return *this;
 //    }
 //
-//private:
+// private:
 //    T X, Y; // Components of the vector
 //};
 //
@@ -201,8 +203,8 @@ using Ratchet::Vector3D;
 // * @param Scalar The scalar value to multiply by.
 // * @return The result of the multiplication.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> operator*(const FVector2D<T>& LHS, const T& Scalar)
+// template <FloatingPoint T>
+// inline FVector2D<T> operator*(const FVector2D<T>& LHS, const T& Scalar)
 //{
 //    return { LHS.GetX() * Scalar, LHS.GetY() * Scalar };
 //}
@@ -214,8 +216,8 @@ using Ratchet::Vector3D;
 // * @param Scalar The scalar value to divide by.
 // * @return The result of the division.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> operator/(const FVector2D<T>& LHS, const T& Scalar)
+// template <FloatingPoint T>
+// inline FVector2D<T> operator/(const FVector2D<T>& LHS, const T& Scalar)
 //{
 //    const T Delimeter = static_cast<T>(1) / Scalar;
 //    return { LHS.GetX() * Delimeter, LHS.GetY() * Delimeter };
@@ -228,8 +230,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The result of the addition.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> operator+(const FVector2D<T>& A, const FVector2D<T>& B)
+// template <FloatingPoint T>
+// inline FVector2D<T> operator+(const FVector2D<T>& A, const FVector2D<T>& B)
 //{
 //    return { A.GetX() + B.GetX(), A.GetY() + B.GetY() };
 //}
@@ -241,8 +243,8 @@ using Ratchet::Vector3D;
 // * @param B The vector to subtract.
 // * @return The result of the subtraction.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> operator-(const FVector2D<T>& A, const FVector2D<T>& B)
+// template <FloatingPoint T>
+// inline FVector2D<T> operator-(const FVector2D<T>& A, const FVector2D<T>& B)
 //{
 //    return { A.GetX() - B.GetX(), A.GetY() - B.GetY() };
 //}
@@ -253,8 +255,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to negate.
 // * @return The negated vector.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> operator-(const FVector2D<T>& Vector)
+// template <FloatingPoint T>
+// inline FVector2D<T> operator-(const FVector2D<T>& Vector)
 //{
 //    return { -Vector.GetX(), -Vector.GetY() };
 //}
@@ -265,8 +267,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to calculate the magnitude of.
 // * @return The magnitude of the vector.
 // */
-//template <FloatingPoint T>
-//inline T Magnitude(const FVector2D<T>& Vector)
+// template <FloatingPoint T>
+// inline T Magnitude(const FVector2D<T>& Vector)
 //{
 //    return Vector.Magnitude();
 //}
@@ -277,8 +279,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to normalize.
 // * @return The normalized vector.
 // */
-//template <FloatingPoint T>
-//inline FVector2D<T> GetNormalized(const FVector2D<T>& Vector)
+// template <FloatingPoint T>
+// inline FVector2D<T> GetNormalized(const FVector2D<T>& Vector)
 //{
 //    const T magnitude = Magnitude(Vector);
 //    FVector2D<T> NormalizedVector = Vector / magnitude;
@@ -293,8 +295,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The dot product of the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T Dot(const FVector2D<T>& A, const FVector2D<T>& B)
+// template <FloatingPoint T>
+// inline T Dot(const FVector2D<T>& A, const FVector2D<T>& B)
 //{
 //    return A.GetX() * B.GetX() + A.GetY() * B.GetY();
 //}
@@ -306,8 +308,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The distance between the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T Distance(const FVector2D<T>& A, const FVector2D<T>& B)
+// template <FloatingPoint T>
+// inline T Distance(const FVector2D<T>& A, const FVector2D<T>& B)
 //{
 //    return Magnitude(A - B);
 //}
@@ -319,8 +321,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The squared distance between the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T DistanceSquared(const FVector2D<T>& A, const FVector2D<T>& B)
+// template <FloatingPoint T>
+// inline T DistanceSquared(const FVector2D<T>& A, const FVector2D<T>& B)
 //{
 //    const FVector2D<T> Difference = A - B;
 //    return Dot(Difference, Difference);
@@ -332,10 +334,10 @@ using Ratchet::Vector3D;
 // *
 // * @tparam T The floating-point type to use for vector components.
 // */
-//template <FloatingPoint T>
-//class FVector4D
+// template <FloatingPoint T>
+// class FVector4D
 //{
-//public:
+// public:
 //    /**
 //     * @brief Default constructor. Initializes all components to zero.
 //     */
@@ -536,7 +538,7 @@ using Ratchet::Vector3D;
 //        return *this;
 //    }
 //
-//private:
+// private:
 //    T X, Y, Z, W; // Components of the vector
 //};
 //
@@ -547,8 +549,8 @@ using Ratchet::Vector3D;
 // * @param Scalar The scalar value to multiply by.
 // * @return The result of the multiplication.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> operator*(const FVector4D<T>& LHS, const T& Scalar)
+// template <FloatingPoint T>
+// inline FVector4D<T> operator*(const FVector4D<T>& LHS, const T& Scalar)
 //{
 //    return { LHS.GetX() * Scalar, LHS.GetY() * Scalar, LHS.GetZ() * Scalar, LHS.GetW() * Scalar };
 //}
@@ -560,8 +562,8 @@ using Ratchet::Vector3D;
 // * @param Scalar The scalar value to divide by.
 // * @return The result of the division.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> operator/(const FVector4D<T>& LHS, const T& Scalar)
+// template <FloatingPoint T>
+// inline FVector4D<T> operator/(const FVector4D<T>& LHS, const T& Scalar)
 //{
 //    const T Delimeter = static_cast<T>(1) / Scalar;
 //    return { LHS.GetX() * Delimeter, LHS.GetY() * Delimeter, LHS.GetZ() * Delimeter, LHS.GetW() * Delimeter };
@@ -574,8 +576,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The result of the addition.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> operator+(const FVector4D<T>& A, const FVector4D<T>& B)
+// template <FloatingPoint T>
+// inline FVector4D<T> operator+(const FVector4D<T>& A, const FVector4D<T>& B)
 //{
 //    return { A.GetX() + B.GetX(), A.GetY() + B.GetY(), A.GetZ() + B.GetZ(), A.GetW() + B.GetW() };
 //}
@@ -587,8 +589,8 @@ using Ratchet::Vector3D;
 // * @param B The vector to subtract.
 // * @return The result of the subtraction.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> operator-(const FVector4D<T>& A, const FVector4D<T>& B)
+// template <FloatingPoint T>
+// inline FVector4D<T> operator-(const FVector4D<T>& A, const FVector4D<T>& B)
 //{
 //    return { A.GetX() - B.GetX(), A.GetY() - B.GetY(), A.GetZ() - B.GetZ(), A.GetW() - B.GetW() };
 //}
@@ -599,8 +601,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to negate.
 // * @return The negated vector.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> operator-(const FVector4D<T>& Vector)
+// template <FloatingPoint T>
+// inline FVector4D<T> operator-(const FVector4D<T>& Vector)
 //{
 //    return { -Vector.GetX(), -Vector.GetY(), -Vector.GetZ(), -Vector.GetW() };
 //}
@@ -611,8 +613,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to calculate the magnitude of.
 // * @return The magnitude of the vector.
 // */
-//template <FloatingPoint T>
-//inline T Magnitude(const FVector4D<T>& Vector)
+// template <FloatingPoint T>
+// inline T Magnitude(const FVector4D<T>& Vector)
 //{
 //    return Vector.Magnitude();
 //}
@@ -623,8 +625,8 @@ using Ratchet::Vector3D;
 // * @param Vector The vector to normalize.
 // * @return The normalized vector.
 // */
-//template <FloatingPoint T>
-//inline FVector4D<T> GetNormalized(const FVector4D<T>& Vector)
+// template <FloatingPoint T>
+// inline FVector4D<T> GetNormalized(const FVector4D<T>& Vector)
 //{
 //    const T magnitude = Magnitude(Vector);
 //    FVector4D<T> NormalizedVector = Vector / magnitude;
@@ -639,8 +641,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The dot product of the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T Dot(const FVector4D<T>& A, const FVector4D<T>& B)
+// template <FloatingPoint T>
+// inline T Dot(const FVector4D<T>& A, const FVector4D<T>& B)
 //{
 //    return A.GetX() * B.GetX() + A.GetY() * B.GetY() + A.GetZ() * B.GetZ() + A.GetW() * B.GetW();
 //}
@@ -652,8 +654,8 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The distance between the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T Distance(const FVector4D<T>& A, const FVector4D<T>& B)
+// template <FloatingPoint T>
+// inline T Distance(const FVector4D<T>& A, const FVector4D<T>& B)
 //{
 //    return Magnitude(A - B);
 //}
@@ -665,35 +667,35 @@ using Ratchet::Vector3D;
 // * @param B The second vector.
 // * @return The squared distance between the two vectors.
 // */
-//template <FloatingPoint T>
-//inline T DistanceSquared(const FVector4D<T>& A, const FVector4D<T>& B)
+// template <FloatingPoint T>
+// inline T DistanceSquared(const FVector4D<T>& A, const FVector4D<T>& B)
 //{
 //    const FVector4D<T> Difference = A - B;
 //    return Dot(Difference, Difference);
 //}
 //
 //
-//#ifdef DOUBLE_PRECISION
-//using Vector3D = FVector3D<double>;
-//#else
-//using Vector3D = FVector3D<float>;
-//#endif
+// #ifdef DOUBLE_PRECISION
+// using Vector3D = FVector3D<double>;
+// #else
+// using Vector3D = FVector3D<float>;
+// #endif
 //
-//#ifdef DOUBLE_PRECISION
-//using Vector2D = FVector2D<double>;
-//#else
-//using Vector2D = FVector2D<float>;
-//#endif
+// #ifdef DOUBLE_PRECISION
+// using Vector2D = FVector2D<double>;
+// #else
+// using Vector2D = FVector2D<float>;
+// #endif
 //
-//#ifdef DOUBLE_PRECISION
-//using Vector4D = FVector4D<double>;
-//#else
-//using Vector4D = FVector4D<float>;
-//#endif
+// #ifdef DOUBLE_PRECISION
+// using Vector4D = FVector4D<double>;
+// #else
+// using Vector4D = FVector4D<float>;
+// #endif
 //
 //
 //}
 //
-//using Ratchet::Vector2D;
-//using Ratchet::Vector3D;
-//using Ratchet::Vector4D;
+// using Ratchet::Vector2D;
+// using Ratchet::Vector3D;
+// using Ratchet::Vector4D;

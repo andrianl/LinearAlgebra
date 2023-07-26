@@ -1,10 +1,11 @@
 #pragma once
 
+// external includes
 #include <concepts>
 #include <limits>
 
-template <typename T>
-concept FloatingPoint = std::is_floating_point_v<T>;
+// internal includes
+#include "Types.h"
 
 namespace Ratchet
 {

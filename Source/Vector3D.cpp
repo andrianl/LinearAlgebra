@@ -72,7 +72,6 @@ namespace Ratchet
 	T Ratchet::FVector3D<T>::Magnitude() const
 	{
 		return Ratchet::Math::Sqrt<T>(X * X + Y * Y + Z * Z);
-		;
 	}
 
 	template <FloatingPoint T>
@@ -128,13 +127,13 @@ namespace Ratchet
 	}
 
 	template <FloatingPoint T>
-	FVector3D<T> operator*(const FVector3D<T> &LHS, const T &Scalar)
+	FVector3D<T> operator*(const FVector3D<T> &LHS, const T Scalar)
 	{
 		return {LHS.GetX() * Scalar, LHS.GetY() * Scalar, LHS.GetZ() * Scalar};
 	}
 
 	template <FloatingPoint T>
-	FVector3D<T> operator/(const FVector3D<T> &LHS, const T &Scalar)
+	FVector3D<T> operator/(const FVector3D<T> &LHS, const T Scalar)
 	{
 		const T Delimeter = static_cast<T>(1) / Scalar;
 		return {LHS.GetX() * Delimeter, LHS.GetY() * Delimeter, LHS.GetZ() * Delimeter};
@@ -220,20 +219,20 @@ namespace Ratchet
 	// You can add more instantiations for other types if needed
 
 	// Explicit instantiation for binary operators with float
-	template FVector3D<float> operator*(const FVector3D<float> &LHS, const float &Scalar);
-	template FVector3D<float> operator/(const FVector3D<float> &LHS, const float &Scalar);
+	template FVector3D<float> operator*(const FVector3D<float> &LHS, const float Scalar);
+	template FVector3D<float> operator/(const FVector3D<float> &LHS, const float Scalar);
 	template FVector3D<float> operator+(const FVector3D<float> &A, const FVector3D<float> &B);
 	template FVector3D<float> operator-(const FVector3D<float> &A, const FVector3D<float> &B);
 
 	// Explicit instantiation for binary operators with double
-	template FVector3D<double> operator*(const FVector3D<double> &LHS, const double &Scalar);
-	template FVector3D<double> operator/(const FVector3D<double> &LHS, const double &Scalar);
+	template FVector3D<double> operator*(const FVector3D<double> &LHS, const double Scalar);
+	template FVector3D<double> operator/(const FVector3D<double> &LHS, const double Scalar);
 	template FVector3D<double> operator+(const FVector3D<double> &A, const FVector3D<double> &B);
 	template FVector3D<double> operator-(const FVector3D<double> &A, const FVector3D<double> &B);
 
 	// Explicit instantiation for binary operators with long double
-	template FVector3D<long double> operator*(const FVector3D<long double> &LHS, const long double &Scalar);
-	template FVector3D<long double> operator/(const FVector3D<long double> &LHS, const long double &Scalar);
+	template FVector3D<long double> operator*(const FVector3D<long double> &LHS, const long double Scalar);
+	template FVector3D<long double> operator/(const FVector3D<long double> &LHS, const long double Scalar);
 	template FVector3D<long double> operator+(const FVector3D<long double> &A, const FVector3D<long double> &B);
 	template FVector3D<long double> operator-(const FVector3D<long double> &A, const FVector3D<long double> &B);
 

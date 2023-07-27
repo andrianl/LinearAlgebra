@@ -3,8 +3,6 @@ Linear Algebra Library for Game Development
 
 LinearAlgebra4Games - Lightweight Linear Algebra Library for Video Games and Computer Graphics (Under Development)
 
-Library Logo
-
 Overview:
 LinearAlgebra4Games is an ongoing C++ library project tailored for video game developers and computer graphics enthusiasts. It aims to provide a comprehensive set of linear algebra functionalities optimized for real-time applications, offering a solid foundation for creating immersive gaming experiences and visually stunning graphics.
 
@@ -22,4 +20,4 @@ Projection and View Matrices: Intend to provide projection and view matrices for
 
 Collision Detection: Plan to implement collision detection and response algorithms to facilitate game development needs.
 
-Note: This library is currently under active development. It is not yet feature-complete, and the API may undergo significant changes as development progresses. Use with caution in production environments. Feedback and contributions are highly appreciated to help shape the library's future.
+Note: This library is currently under active development. It is not yet feature-complete, and the API may undergo significant changes as development progresses.Feedback and contributions are highly appreciated to help shape the library's future.

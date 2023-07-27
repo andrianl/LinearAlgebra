@@ -3,27 +3,23 @@
 
 int main()
 {
-	Vector2D Location2{};
-	Vector3D Location3{};
-	Vector4D Location4{};
+	Vector3D LocationX{3, 4, 5}, LocationY{5, 6, 7};
 
+	auto X = Distance(LocationX, LocationY);
+	auto Y = Cross(LocationX, LocationY);
+	auto Z = Dot(LocationX, LocationY);
 
-	Vector3D LocationX{ 4, 8, 12 };
-	Vector3D LocationY{ 5 , 8 , 19 };
+	Vector2D Location2X{3, 4}, Location2Y{4, 5};
 
-	//std::cout << "Double precision " << sizeof(Vector3D) * 8 << std::endl;
+	auto X2 = Distance(Location2X, Location2Y);
+	// auto Y2 = Cross(Location2X, Location2Y);
+	auto Z2 = Dot(Location2X, Location2Y);
 
-	auto DistanceXY = Distance(LocationX, LocationY);
+	Vector4D Location4X{3, 4, 5, 6}, Location4Y{5, 6, 7, 8};
 
-	auto MagnitudeX = Magnitude(LocationX);
-	auto MagnitudeFromX = LocationX.Magnitude();
+	auto X4 = Distance(Location4X, Location4Y);
 
-	Vector3D NormalizedVector = LocationY.Normalize();
-
-	std::cout << "Distance From X to Y: " << DistanceXY << std::endl;
-	std::cout << "Magnitude of X " << MagnitudeX << std::endl;
-	std::cout << "Magnitude from X: " << MagnitudeFromX << std::endl;
-	std::cout << "Normalized Vector Y: " << NormalizedVector.GetX() << ' ' << NormalizedVector.GetY() << ' ' << NormalizedVector.GetZ() << ' ' << std::endl;
+	auto Z4 = Dot(Location4X, Location4Y);
 
 	return 0;
 }

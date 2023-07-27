@@ -1,4 +1,9 @@
 #pragma once
+#include <type_traits>
+
+#include "Platform.h"
+#include <limits>
+
 
 // external includes
 #include <concepts>

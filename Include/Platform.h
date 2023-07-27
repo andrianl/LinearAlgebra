@@ -77,7 +77,7 @@ namespace Ratchet
 
 #if !defined(restrict)
 
-#define restrict __restrict__
+#define RESTRICT __restrict__
 
 #endif
 
@@ -122,7 +122,7 @@ namespace Ratchet
 
 #if !defined(restrict)
 
-#define restrict __restrict__
+#define RESTRICT __restrict__
 
 #endif
 

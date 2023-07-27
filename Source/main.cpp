@@ -14,5 +14,11 @@ int main()
 	// auto Y2 = Cross(Location2X, Location2Y);
 	auto Z2 = Dot(Location2X, Location2Y);
 
+	Vector4D Location4X{3, 4, 5, 6}, Location4Y{5, 6, 7, 8};
+
+	auto X4 = Distance(Location4X, Location4Y);
+
+	auto Z4 = Dot(Location4X, Location4Y);
+
 	return 0;
 }
